@@ -1,215 +1,844 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
-  <title>Korpilahden Riistakerho</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korpilahden Riistakerho – Riistapolku 14.5.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="Riistakerho" />
-  <link rel="manifest" href="/site.webmanifest" />
+  :root {
+    --cream: #f0ebe0;
+    --parchment: #e8e0cc;
+    --dark-green: #1a2e1e;
+    --forest: #2d4a2f;
+    --moss: #4a6741;
+    --sage: #7a9b6e;
+    --rust: #b85c2a;
+    --amber: #d4872a;
+    --copper: #c96b2e;
+    --bone: #ede5d0;
+    --ink: #1a1a14;
+  }
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://riistakerho.fi" />
-  <meta property="og:title" content="Korpilahden Riistakerho" />
-  <meta property="og:description" content="Korpilahden Riistakerho — sivusto on rakenteilla. Tulossa pian!" />
-  <meta property="og:image" content="https://riistakerho.fi/Riistakerho-OG-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
+  html { scroll-behavior: smooth; }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Averia Serif Libre", Georgia, serif;
+    font-size: 18px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
 
-    body {
-      font-family: 'Averia Serif Libre', Georgia, 'Times New Roman', serif;
-      background: #0d1a0d;
-      min-height: 100vh;
-    }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 20px 120px;
+  }
 
-    .page {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px;
-      overflow: hidden;
-    }
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    background-image: url("kasvitausta.jpg");
+    background-size: cover;
+    background-position: center 30%;
+  }
 
-    .bg {
-      position: absolute;
-      inset: 0;
-      object-fit: cover;
-      object-position: center 40%;
-      z-index: 0;
-    }
+  .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,20,10,0.55) 0%, rgba(15,28,15,0.45) 40%, rgba(10,22,10,0.75) 100%);
+  }
 
-    .vignette {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(8,20,8,0.10) 0%, rgba(6,16,6,0.80) 100%);
-      z-index: 1;
-    }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 780px;
+  }
 
-    main.content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      max-width: 560px;
-      width: 100%;
-    }
+  .badge-wrapper {
+    margin-bottom: 28px;
+    animation: fadeDown 1s ease both;
+  }
 
-    .logo {
-      width: 240px;
-      height: 240px;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.6));
-      margin-bottom: 32px;
-    }
+  .badge-img {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 30px rgba(0,0,0,0.5)) drop-shadow(0 0 60px rgba(184,92,42,0.2));
+  }
 
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      width: 100%;
-      max-width: 300px;
-      margin-bottom: 24px;
-    }
+  .badge-img img {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+  }
 
-    .divider-line {
-      flex: 1;
-      height: 1px;
-      background: rgba(200,184,140,0.4);
-    }
+  .hero-eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--amber);
+    margin-bottom: 10px;
+    animation: fadeDown 1s 0.1s ease both;
+  }
 
-    .divider-star {
-      color: #c8a85a;
-      font-size: 0.9rem;
-    }
+  .hero-title {
+    font-family: "Averia Serif Libre", Georgia, serif;
+    font-size: clamp(60px, 12vw, 110px);
+    font-weight: 700;
+    color: var(--bone);
+    line-height: 0.92;
+    margin-bottom: 16px;
+    animation: fadeDown 1s 0.2s ease both;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+  }
 
-    .heading {
-      font-size: clamp(1.6rem, 4vw, 2.1rem);
-      font-weight: 400;
-      color: #f5efe0;
-      letter-spacing: 0.05em;
-      line-height: 1.35;
-      margin-bottom: 14px;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.7);
-    }
+  .hero-title em {
+    font-style: italic;
+    color: #d97a45;
+  }
 
-    .tagline {
-      font-size: clamp(0.88rem, 2vw, 1rem);
-      font-weight: 300;
-      color: #f0e8d4;
-      letter-spacing: 0.06em;
-      line-height: 1.65;
-      margin-bottom: 36px;
-      font-style: italic;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.75);
-    }
+  .hero-subtitle {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(16px, 2.5vw, 24px);
+    letter-spacing: 7px;
+    color: var(--sage);
+    margin-bottom: 40px;
+    animation: fadeDown 1s 0.3s ease both;
+  }
 
-    .contact-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      margin-top: 8px;
-    }
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    animation: fadeDown 1s 0.4s ease both;
+  }
 
-    .contact-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #c8a85a;
-      margin-bottom: 4px;
-    }
+  .hero-meta-item { text-align: center; }
 
-    .contact-name {
-      font-size: 0.98rem;
-      font-weight: 400;
-      color: #ecdfc6;
-      letter-spacing: 0.04em;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
-    }
+  .hero-meta-label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--sage);
+    display: block;
+    margin-bottom: 4px;
+  }
 
-    .contact-email {
-      font-size: 0.92rem;
-      color: #c9b99a;
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      border-bottom: 1px solid rgba(200,184,140,0.35);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
+  .hero-meta-value {
+    font-family: "Averia Serif Libre", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+  }
 
-    .contact-email:hover {
-      color: #f0dda0;
-      border-bottom-color: rgba(240,221,160,0.55);
-    }
-  </style>
+  .hero-divider {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(122,155,110,0.5), transparent);
+    align-self: center;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeDown 1s 0.5s ease both;
+  }
+
+  .btn-primary {
+    background: var(--rust);
+    color: var(--bone);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    padding: 16px 40px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--copper);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(184,92,42,0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--bone);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    padding: 15px 40px;
+    border: 1px solid rgba(240,235,224,0.35);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--sage);
+    color: var(--sage);
+    transform: translateY(-2px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bob 2s ease-in-out infinite;
+    z-index: 10;
+  }
+
+  .scroll-hint svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--sage);
+    opacity: 0.7;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* BAND */
+  .band {
+    background: var(--rust);
+    padding: 13px 20px;
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: var(--bone);
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 20px; }
+
+  .container { max-width: 1080px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--rust);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: "Averia Serif Libre", Georgia, serif;
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--dark-green);
+    margin-bottom: 22px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .section-lead {
+    font-size: 20px;
+    color: #3a3a2e;
+    max-width: 620px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ABOUT */
+  .about { background: var(--bone); position: relative; overflow: hidden; }
+
+  .about::before {
+    content: "RIISTAPOLKU";
+    position: absolute;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18vw;
+    color: rgba(45,74,47,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-card {
+    background: var(--dark-green);
+    padding: 48px;
+    position: relative;
+    color: var(--bone);
+  }
+
+  .about-card::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: -12px;
+    bottom: -12px;
+    border: 2px solid var(--rust);
+    z-index: -1;
+  }
+
+  .about-card-label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--sage);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .about-card-date {
+    font-family: "Averia Serif Libre", serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--bone);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .about-card-time {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin-bottom: 24px;
+  }
+
+  .about-card-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 22px 0;
+  }
+
+  .about-card-address {
+    font-family: "Averia Serif Libre", serif;
+    font-size: 16px;
+    color: rgba(240,235,224,0.7);
+    line-height: 1.5;
+  }
+
+  .about-card-address strong {
+    color: var(--bone);
+    display: block;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  /* KERHO TEASER MINIMAL */
+  .kerho-minimal {
+    background: var(--dark-green);
+    padding: 70px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kerho-minimal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("kasvitausta.jpg");
+    background-size: cover;
+    background-position: center 60%;
+    opacity: 0.12;
+  }
+
+  .kerho-minimal-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .kerho-minimal-eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--amber);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .kerho-minimal-title {
+    font-family: "Averia Serif Libre", serif;
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 700;
+    color: var(--bone);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .kerho-minimal-title em {
+    font-style: italic;
+    color: #d97a45;
+  }
+
+  .kerho-minimal-text {
+    font-size: 18px;
+    color: rgba(240,235,224,0.75);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  .kerho-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(212,135,42,0.4);
+    background: rgba(212,135,42,0.08);
+    padding: 12px 28px;
+    color: var(--amber);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+  }
+
+  /* RASTIT */
+  .rastit { background: var(--dark-green); }
+  .rastit .section-title { color: var(--bone); }
+  .rastit .section-eyebrow { color: var(--amber); }
+  .rastit .section-lead { color: rgba(240,235,224,0.65); }
+
+  .rastit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .rasti-item {
+    background: rgba(255,255,255,0.03);
+    padding: 40px 32px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rasti-item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--rust);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+  }
+
+  .rasti-item:hover::before { transform: scaleX(1); }
+  .rasti-item:hover { background: rgba(255,255,255,0.06); }
+
+  .rasti-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 44px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .rasti-icon { font-size: 26px; margin-bottom: 14px; }
+
+  .rasti-name {
+    font-family: "Averia Serif Libre", serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--bone);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .rasti-desc {
+    font-size: 15px;
+    color: rgba(240,235,224,0.5);
+    line-height: 1.6;
+  }
+
+  /* MAP */
+  .map-section { background: var(--cream); }
+
+  .map-header { margin-bottom: 48px; }
+
+  .map-wrapper {
+    position: relative;
+    border: 3px solid var(--dark-green);
+    overflow: hidden;
+  }
+
+  .map-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 14px; left: 14px;
+    right: -14px; bottom: -14px;
+    background: var(--dark-green);
+    z-index: -1;
+  }
+
+  .map-frame {
+    width: 100%;
+    height: 440px;
+    border: none;
+    display: block;
+    filter: sepia(15%) contrast(1.05);
+  }
+
+  .map-overlay-info {
+    position: absolute;
+    top: 20px; left: 20px;
+    background: var(--dark-green);
+    color: var(--bone);
+    padding: 20px 24px;
+    max-width: 240px;
+  }
+
+  .map-overlay-label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--sage);
+    margin-bottom: 8px;
+  }
+
+  .map-overlay-addr {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(240,235,224,0.8);
+    margin-bottom: 12px;
+    font-family: "Averia Serif Libre", serif;
+  }
+
+  .map-link {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--amber);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .map-link:hover { color: var(--rust); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 60px 20px 40px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: "Averia Serif Libre", serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--bone);
+    margin-bottom: 6px;
+  }
+
+  .footer-sub {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--sage);
+    margin-bottom: 30px;
+  }
+
+  .footer-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin: 30px auto;
+    max-width: 400px;
+  }
+
+  .footer-org {
+    font-size: 14px;
+    color: rgba(240,235,224,0.35);
+    margin-bottom: 6px;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .rastit-grid { grid-template-columns: 1fr; gap: 0; }
+    .about-card::before { display: none; }
+    .hero-meta { gap: 20px; }
+    .hero-divider { display: none; }
+  }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
 </head>
 <body>
-  <div class="page">
-    <img
-      class="bg"
-      src="kasvitausta-2-wide-web.jpg"
-      alt=""
-      aria-hidden="true"
-    >
-    <div class="vignette"></div>
 
-    <main class="content">
-      <img
-        class="logo"
-        src="Riistakerho-logo.png"
-        alt="Korpilahden Riistakerho"
-        width="240"
-        height="240"
-      >
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-bg-overlay"></div>
 
-      <div class="divider" aria-hidden="true">
-        <div class="divider-line"></div>
-        <span class="divider-star">✦</span>
-        <div class="divider-line"></div>
+  <div class="hero-content">
+    <div class="badge-wrapper">
+      <div class="badge-img">
+        <img src="Riistakerho-logo.png" alt="Korpilahden Riistakerho">
       </div>
+    </div>
 
-      <h1 class="heading">Sivusto on rakenteilla</h1>
-      <p class="tagline">
-        Korpilahden Riistakerho avaa sivustonsa pian.<br>
-        Palataan asiaan!
-      </p>
+    <p class="hero-eyebrow">Korpilahden RHY esittää</p>
+    <h1 class="hero-title">Riista<em>polku</em></h1>
+    <p class="hero-subtitle">Koko perheen tapahtuma</p>
 
-      <div class="divider" aria-hidden="true">
-        <div class="divider-line"></div>
-        <span class="divider-star">✦</span>
-        <div class="divider-line"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Päivämäärä</span>
+        <span class="hero-meta-value">14.5.</span>
       </div>
-
-      <div class="contact-block">
-        <p class="contact-label">Lisätietoja</p>
-        <p class="contact-name">Samuli Raappana</p>
-        <a
-          class="contact-email"
-          href="mailto:ym.metsastajat@gmail.com"
-        >ym.metsastajat@gmail.com</a>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Aika</span>
+        <span class="hero-meta-value">klo 12–16</span>
       </div>
-    </main>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Paikka</span>
+        <span class="hero-meta-value">Mansikkamäentie 289</span>
+      </div>
+    </div>
+
+    <div class="cta-group">
+      <a href="#rastit" class="btn-primary">Katso ohjelma</a>
+      <a href="#kartta" class="btn-secondary">Näytä kartalla</a>
+    </div>
   </div>
+
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- BAND -->
+<div class="band">Ilmainen sisäänpääsy &nbsp;·&nbsp; Makkaranpaistoa &nbsp;·&nbsp; Kahvia &nbsp;·&nbsp; Kaikki tervetulleita</div>
+
+<!-- ABOUT -->
+<section class="about" id="tapahtuma">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-eyebrow">Tapahtumasta</span>
+        <h2 class="section-title">Tule tutustumaan <em>metsästykseen</em></h2>
+        <p class="section-lead">
+          Riistapolku on hauska ja opettavainen ulkoilmapäivä koko perheelle. Lasten ja nuorten on helppo tutustua metsästykseen ja riistanhoitoon käytännönläheisesti eri rastien kautta.
+        </p>
+        <p style="margin-top: 20px; color: #3a3a2e; font-size: 17px; max-width: 580px; line-height: 1.75;">
+          Tapahtumassa kuulet myös lisää alkukesällä käynnistyvästä <strong>Riistakerhosta</strong> — tule juttelemaan järjestäjien kanssa!
+        </p>
+        <div style="margin-top: 36px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <a href="#kartta" class="btn-primary">Löydä paikalle</a>
+          <span style="font-size: 14px; color: #7a6a50; font-family: "Bebas Neue", sans-serif; letter-spacing: 2px;">Järjestäjänä Korpilahden RHY</span>
+        </div>
+      </div>
+
+      <div class="about-visual reveal reveal-delay-2">
+        <div class="about-card">
+          <span class="about-card-label">Tapahtuman tiedot</span>
+          <div class="about-card-date">14. toukokuuta</div>
+          <div class="about-card-time">Klo 12:00 – 16:00</div>
+          <div class="about-card-divider"></div>
+          <div class="about-card-address">
+            <strong>Mansikkamäentie 289</strong>
+            41800 Jyväskylä (Korpilahti)
+          </div>
+          <div class="about-card-divider"></div>
+          <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+            <div>
+              <div style="font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 3px; color: #7a9b6e; margin-bottom: 4px;">Pääsymaksu</div>
+              <div style="color: #ede5d0; font-size: 20px; font-weight: 700; font-family: "Averia Serif Libre", serif;">Ilmainen</div>
+            </div>
+            <div>
+              <div style="font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 3px; color: #7a9b6e; margin-bottom: 4px;">Kohdeyleisö</div>
+              <div style="color: #ede5d0; font-size: 20px; font-weight: 700; font-family: "Averia Serif Libre", serif;">Koko perhe</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RASTIT -->
+<section class="rastit" id="rastit">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Päivän ohjelma</span>
+      <h2 class="section-title" style="color: var(--bone);">Rastit &amp; <em>toiminta</em></h2>
+      <p class="section-lead">Kierrä rastit omaan tahtiisi ja tutustu metsästyskulttuuriin käytännön kautta.</p>
+    </div>
+
+    <div class="rastit-grid">
+      <div class="rasti-item reveal reveal-delay-1">
+        <div class="rasti-num">01</div>
+        <div class="rasti-icon">🐕</div>
+        <div class="rasti-name">Koirarasti</div>
+        <div class="rasti-desc">Noutaja ja/tai jälkikoira esittelee taitojaan. Koiran rooli metsästyksessä havainnollistetaan lapsille käytännössä.</div>
+      </div>
+      <div class="rasti-item reveal reveal-delay-2">
+        <div class="rasti-num">02</div>
+        <div class="rasti-icon">🪤</div>
+        <div class="rasti-name">Loukkurasti</div>
+        <div class="rasti-desc">Eri loukkutyyppien esittely. Miksi loukkuja käytetään ja mikä on pienpetopyynnin merkitys luonnon tasapainolle.</div>
+      </div>
+      <div class="rasti-item reveal reveal-delay-3">
+        <div class="rasti-num">03</div>
+        <div class="rasti-icon">🐾</div>
+        <div class="rasti-name">Eläinten jäljet</div>
+        <div class="rasti-desc">Eri eläinten jälkien tunnistamista. Eläintauluja ja tietoa riistaeläimistä sekä niiden käyttäytymisestä.</div>
+      </div>
+      <div class="rasti-item reveal reveal-delay-1">
+        <div class="rasti-num">04</div>
+        <div class="rasti-icon">🌿</div>
+        <div class="rasti-name">Riistaruokintarasti</div>
+        <div class="rasti-desc">Ruokintakatos, nuolukivi ja muut välineet. Tutustutaan puupassiin ja siihen, mitä riistaeläimet syövät.</div>
+      </div>
+      <div class="rasti-item reveal reveal-delay-2">
+        <div class="rasti-num">05</div>
+        <div class="rasti-icon">🎒</div>
+        <div class="rasti-name">Metsästäjän varusteet</div>
+        <div class="rasti-desc">Radiopuhelimet, vaatetus, koiratutka ja sovellus. Kivääri ja haulikko näytillä ohjaajan käsittelemänä.</div>
+      </div>
+      <div class="rasti-item reveal reveal-delay-3">
+        <div class="rasti-num">06</div>
+        <div class="rasti-icon">🔥</div>
+        <div class="rasti-name">Makkaranpaistoa</div>
+        <div class="rasti-desc">Päivä huipentuu yhteiseen makkaranpaistoon nuotiolla. Kahvia tarjolla.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KERHO MINIMAL -->
+<div class="kerho-minimal">
+  <div class="kerho-minimal-inner reveal">
+    <span class="kerho-minimal-eyebrow">Tulossa alkukesällä</span>
+    <h2 class="kerho-minimal-title">Korpilahden <em>Riistakerho</em> käynnistyy</h2>
+    <p class="kerho-minimal-text">
+      Riistapolku-tapahtuma toimii samalla esittelynä alkukesällä käynnistyvälle Riistakerhol­le, joka on suunnattu kouluikäisille lapsille. Tule kuulemaan lisää — järjestäjät ovat paikalla kertomassa!
+    </p>
+    <div class="kerho-pill">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Lisätietoa saatavilla Riistapolku-tapahtumassa 14.5.
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<section class="map-section" id="kartta">
+  <div class="container">
+    <div class="map-header reveal">
+      <span class="section-eyebrow">Sijainti</span>
+      <h2 class="section-title">Löydä <em>paikalle</em></h2>
+    </div>
+    <div class="map-wrapper reveal reveal-delay-1">
+      <iframe
+        class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2022.5!2d25.485323!3d62.109115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46859874c77fce6d%3A0xf02abba7f993bf67!2sMansikkam%C3%A4entie%20289%2C%2041800%20Jyv%C3%A4skyl%C3%A4!5e0!3m2!1sfi!2sfi!4v1714000000000!5m2!1sfi!2sfi"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Riistapolku-tapahtuman sijainti">
+      </iframe>
+      <div class="map-overlay-info">
+        <div class="map-overlay-label">Tapahtumapaikka</div>
+        <div class="map-overlay-addr">Mansikkamäentie 289<br>41800 Jyväskylä (Korpilahti)</div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=62.109115,25.485323" target="_blank" rel="noopener" class="map-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+          Reittiohjeet
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Korpilahden Riistakerho</div>
+  <div class="footer-sub">Riistapolku · 14.5. · Mansikkamäentie 289</div>
+  <div class="footer-divider"></div>
+  <div class="footer-org">Järjestäjänä Korpilahden Riistanhoitoyhdistys</div>
+  <div class="footer-copy">www.riistakerho.fi</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+  reveals.forEach(el => io.observe(el));
+
+  document.querySelectorAll("a[href^='#']").forEach(a => {
+    a.addEventListener("click", e => {
+      const target = document.querySelector(a.getAttribute("href"));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    });
+  });
+</script>
 </body>
 </html>
