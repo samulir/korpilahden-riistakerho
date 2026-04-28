@@ -75,18 +75,19 @@
   }
 
   .badge-img {
-    width: 220px;
-    height: 220px;
+    width: 280px;
+    height: 280px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     filter: drop-shadow(0 0 30px rgba(0,0,0,0.5)) drop-shadow(0 0 60px rgba(184,92,42,0.2));
+    transform: translateZ(0);
   }
 
   .badge-img img {
-    width: 220px;
-    height: 220px;
+    width: 280px;
+    height: 280px;
     object-fit: contain;
   }
 
@@ -611,6 +612,7 @@
     .about-card::before { display: none; }
     .hero-meta { gap: 20px; }
     .hero-divider { display: none; }
+    .badge-img, .badge-img img { width: 200px; height: 200px; }
   }
 
   /* REVEAL */
