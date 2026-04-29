@@ -6,3 +6,10 @@ kasvitausta-2-wide.png
 kasvitausta-1.png
 kasvitausta-2.png
 Esimerkkejä/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
